@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:replace="fragments :: head"></div>
+
+<body class="entryPage">
+
+<div sec:authorize="hasRole('ROLE_USER')" >
+<div th:replace="fragments :: welcome"></div>
+<div th:replace="fragments :: logout"></div>
+
+    <div class="form-row justify-content-center" style="margin-top: 150px;">
+    <div th:each="book : ${bookSet}">
+        <!-- <span th:text="${book.author}"/>-->
+        <div class="col-md-5 offset-md-0">
+            <div class="bookItem" style="width:300px; display: block; margin: 0 auto; text-align: center; padding-bottom: 75px;">
+                <img th:src="${book.img}" class="img-responsive" style="position: relative; width:250px;
+                height: 320px;
+                background-size: cover;"/>
+                <div class="titleBook">
+                    <label th:text="${book.title}"/>
+                </div>
+                <div class="authorBook">
+                    <label th:text="${book.author}"/>
+                </div>
+                <div class="yearRelease">
+                    <label>Year release:</label>
+                    <label th:text="${book.year_release}"/>
+                </div>
+                <form method="post" th:action="@{/user/newLoans}">
+                    <button type="submit"
+                            class="btn btn-dark"
+                            name="btnBorrow"
+                            th:value="${book.id}"
+                            style="background-color: black; color: white;">Borrow book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <div th:replace="fragments :: header"></div>
+    <div th:replace="fragments :: logout"></div>
+    <a th:href="@{/user/loans}" style=" font-family: Times New Roman;
+       font-size: 25px;
+       padding-left: 50px;
+       color: white; text-decoration: none;">See loans</a>
+    <a th:href="@{/user/search}" style=" font-family: Times New Roman;
+       font-size: 25px;
+       padding-left: 50px;
+       color: white; text-decoration: none;">Search existing users</a>
+    <div class="row justify-content-center" style="margin-top: 100px;">
+        <table class="table" style="width: 70%;">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Username</th>
+                <th>Email</th>
+            </tr>
+            <tr th:each="user : ${userSet}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.surname}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div th:replace="fragments :: js"></div>
+</body>
+</html>

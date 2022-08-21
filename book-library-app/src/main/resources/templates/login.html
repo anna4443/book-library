@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<div th:replace="fragments :: head"></div>
+<body class="loginPage">
+<div class="container-fluid">
+    <div th:replace="fragments :: header"></div>
+    <div>
+        <a th:href="@{/home}" style=" font-family: Times New Roman;
+       font-size: 25px;
+       padding-left: 50px;
+       color: white; text-decoration: none;">Back</a>
+        <h3 style="margin-top: 50px;">Login please</h3>
+        <div th:if="${param.error}" class="login-error">Unable to login. Check your username and password.</div>
+        <div th:if="${param.logout}" class="login-success">You have successfully logged out.</div>
+    </div>
+    <form method="post" th:object="${user}" th:action="@{/login}">
+        <div class="form-row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <label for="username" style="color: white;">Username: </label>
+                <input type="text" class="form-control" id="username" placeholder="Insert username" name="username">
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <label for="password" style="color: white;">Password: </label>
+                <input type="password" class="form-control" id="password" placeholder="Insert password" name="password">
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <input type="submit" value="Login" class="btn btn-dark">
+        </div>
+    </form>
+</div>
+<div th:replace="fragments :: js"></div>
+</body>
+</html>

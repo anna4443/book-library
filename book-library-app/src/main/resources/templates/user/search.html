@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:replace="fragments :: head"></div>
+<body class="searchUsers">
+<div sec:authorize="hasRole('ROLE_ADMIN')" style="margin-left: 50px;">
+    <div th:replace="fragments :: header"></div>
+    <div th:replace="fragments :: logout"></div>
+
+    <a th:href="@{/user/entryAfterLogin}" style=" font-family: Times New Roman;
+       font-size: 25px;
+       padding-left: 50px;
+       color: white; text-decoration: none;">Back</a>
+
+    <h2>User search</h2>
+
+    <div>
+        <form method="POST" th:object="${users}" th:action="@{/user/search}">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="name" style="color: white;">User name (any part of name, case insensitive): </label>
+                <input type="text" class="form-control" id="name"  th:field="*{name}"/>
+            </div>
+        </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <input type="submit" value="Search" class="btn btn-dark">
+                </div>
+            </div>
+
+            <div th:if="${userSet != null}">
+                <table class="table table-striped" th:if="${userSet.size() != 0}">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                    <tr th:each="user : ${userSet}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.surname}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                    </tr>
+                </table>
+
+                <div th:if="${userSet.size() == 0}">
+                    <span>No users by that search criteria were found</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="fragments :: js"></div>
+</body>
+</html>

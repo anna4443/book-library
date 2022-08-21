@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments :: head"></div>
+<body class="confirmPage">
+<div style="margin: 0 auto;">
+    <h1 style="color: white;">You borrowed book!</h1>
+    <a th:href="@{/user/entryAfterLogin}" style="text-decoration: none; font-size: 25px;">List of books</a>
+</div>
+</body>
+</html>

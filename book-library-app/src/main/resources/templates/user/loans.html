@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:replace="fragments :: head"></div>
+
+<body class="loanPage">
+<div sec:authorize="hasRole('ROLE_ADMIN')" >
+<div th:replace="fragments :: header"></div>
+<div th:replace="fragments :: logout"></div>
+
+    <a th:href="@{/user/entryAfterLogin}" style=" font-family: Times New Roman;
+       font-size: 25px;
+       padding-left: 50px;
+       color: white; text-decoration: none;">Back</a>
+   <div class="row justify-content-center" style="margin-top: 100px;">
+        <table class="table" style="width: 70%;">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Username</th>
+                <th>Title</th>
+            </tr>
+            <tr th:each="loan : ${loanSet}">
+                <td th:text="${loan.name}"></td>
+                <td th:text="${loan.surname}"></td>
+                <td th:text="${loan.username}"></td>
+                <td th:text="${loan.title}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div th:replace="fragments :: js"></div>
+</body>
+</html>

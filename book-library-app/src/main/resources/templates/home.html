@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments :: head"></div>
+
+<body class="homePage">
+<div th:replace="fragments :: header"></div>
+
+<div class="homeNav">
+    <ul>
+        <li><a th:href="@{/login}">Login</a></li>
+        <li><a th:href="@{/user/new}">Registration</a></li>
+    </ul>
+</div>
+
+<div class="container-fluid">
+    <div class="form-row justify-content-center">
+        <img th:src="@{/images/bookshome.png}"/>
+    </div>
+</div>
+
+<div th:replace="fragments :: js"></div>
+</body>
+</html>

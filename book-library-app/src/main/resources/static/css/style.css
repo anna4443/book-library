@@ -1,0 +1,44 @@
+#logo-title, #welcome-title{
+    font-family: "Times New Roman";
+    text-align: center;
+    margin-top: 20px;
+}
+
+#logo-title >  h1, #welcome-title > h1{
+    font-size: 80px;
+    color: white;
+}
+
+.homePage, .registrationPage, .loginPage, .entryPage, .loanPage, .confirmPage, .searchUsers{
+    background: #fd7e14;
+}
+
+h3{
+    font-family: "Times New Roman";
+    text-align: center;
+    color: white;
+}
+
+.homeNav > ul{
+    list-style: none;
+    text-align: right;
+}
+
+.homeNav > ul > li > a:hover{
+    text-decoration: none;
+}
+
+.homeNav {
+    margin: 50px 100px 0 0;
+}
+
+.homeNav > ul > li > a{
+    color: white;
+    font-size: 20px;
+    font-family: "Times New Roman";
+}
+
+
+
+
+

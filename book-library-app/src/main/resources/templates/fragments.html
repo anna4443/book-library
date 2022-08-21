@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<head th:fragment="head">
+    <title th:text="#{msg.appName}"></title>
+    <meta charset="UTF-8"></meta>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+
+<div th:fragment="header" id="logo-title">
+    <h1 th:text="#{msg.appName}"></h1>
+
+    <div>
+        <span th:text="#{msg.lang.current}"></span>:
+        <select id="locales">
+            <option value="en" th:selected="${#locale.language == 'en'}" th:text="#{msg.lang.en}"></option>
+            <option value="hr" th:selected="${#locale.language == 'hr'}" th:text="#{msg.lang.hr}"></option>
+        </select>
+    </div>
+</div>
+
+<div th:fragment="welcome" id="welcome-title">
+    <h1>Welcome to book library</h1>
+</div>
+
+<div th:fragment="logout" id="logout-form" style="margin-right: 50px;">
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="Logout" class="btn btn-dark" style="float: right;"/>
+    </form>
+</div>
+
+<div th:fragment="js" >
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <!-- Downloaded from https://code.jquery.com/jquery-3.5.1.slim.min.js -->
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.1.slim.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+</div>
+</body>
+</html>
